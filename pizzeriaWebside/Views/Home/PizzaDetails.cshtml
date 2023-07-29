@@ -1,0 +1,17 @@
+﻿@model pizzeriaWebside.Models.Pizza
+
+@{
+    ViewData["Title"] = "Szczegóły";
+}
+
+<h1>Szczegóły pizzy</h1>
+<h4>@Model.Name</h4>
+<h4>Numer: @Model.Id</h4>
+<img class="rounded" src="~/images/@Model.Image" style="height: 20rem; width: 35rem"/>
+<h5>Opis pizzy</h5>
+<p>@Model.Description</p>
+@Html.ActionLink("Edytuj opis", "EditPizzaDescription", new { id = Model.Id })
+<h5>Cena: @Model.Price zł</h5>
+
+<hr/>
+<a asp-action="AllPizzas">Powrót</a>

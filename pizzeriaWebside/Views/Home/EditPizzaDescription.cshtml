@@ -1,0 +1,35 @@
+﻿@model Pizza
+
+
+<h1>Edycja Opisu Pizzy</h1>
+<img class="rounded" src="~/images/@Model.Image" style="height: 20rem; width: 35rem" />
+<h3>Obecny opis</h3>
+<p>@Model.Description</p>
+<hr />
+<h5>Wprowadz nowy opis</h5>
+<form action="*">
+    <input id="my-input" type="text" name="opis" style="width: 700px; height: 150px; border-radius: 5px; word-break: break-all;" />
+</form>
+<button class="btn btn-outline-primary mx-1 edit-button">Zatwierdz</button>
+
+
+@section Scripts
+    {
+    <script>
+        $(".edit-button").click(function () {
+            var inputVall = $("#my-input").val();
+            var idVall = @Model.Id;
+            $.ajax({
+                type: "POST",
+                url: "/Home/EditDescription",
+                data: {  idVal: idVall,  inputVal: inputVall },
+                success: function (response) {
+                    alert("Wykonano pomyślnie zmiane");
+                },
+                error: function () {
+                    alert("Błąd!");
+                }
+            });
+        });
+    </script>
+}

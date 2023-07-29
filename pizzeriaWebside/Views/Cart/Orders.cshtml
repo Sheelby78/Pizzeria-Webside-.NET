@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewData["Title"] = "Zamowienia";
+}
+
+<h1>Zamowienia</h1>
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nr</th>
+                <th>Numer telefonu</th>
+                <th>Miasto</th>
+                <th>Adres</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int number = 0;
+             }
+            @foreach (var item in Model)
+            {
+                number += 1;
+                <tr id="row-@item.Id">
+                    <td>@number </td>
+                    <td id="price-@item.Id">@item.Phone</td>
+                    <td id="count-@item.Id">@item.City</td>
+                    <td id="count-@item.Id">@item.Address</td>
+                    <td>
+                        @Html.ActionLink("Szczegoly", "OrderDetails", "Cart", new {id = item.Id}, new {@class = "btn btn-primary"})
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h5>Brak zamowien</h5>
+}
